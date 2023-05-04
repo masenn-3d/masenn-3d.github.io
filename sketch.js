@@ -25,7 +25,7 @@ mousePrev = {
 
 theta = 0;
 
-sensitivity = 7;
+sensitivity = 30;
 tr = {
     x:0,
     y:0,
@@ -46,13 +46,15 @@ function draw(){
         translate(tr.x, tr.y, tr.z);
         circle(0,0,30);
         // image(im,30,30);
-        texture(im);
+        // texture(im);
         rotateY(c);
         c+=.1;
         box(90);
     pop();
 
-    // camera(
-
-    // ); 
+    camera(
+        0,0,0,
+        sin(theta),0,cos(theta),
+        0,-1,0
+    ); 
 }

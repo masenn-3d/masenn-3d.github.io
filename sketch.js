@@ -42,6 +42,7 @@ function keyReleased(){
         keys[2] = false;
     }else if (keyCode == 68){
         //d
+        console.log('d');
         keys[3] = false;
     } else if(keyCode == 38){
         //UP
@@ -73,7 +74,7 @@ c = 0;
 
 
 function draw(){
-    background(90);
+    background(random(0,255));
 
     for(let i = 0; i < keys.length; i++){
         if(keys[i]){
@@ -93,8 +94,9 @@ function draw(){
                     tr.z += -cos(theta-PI/2)*sensitivity;
                     break;
                 case 3: 
-                    tr.x += -sin(theta-PI/2)*sensitivity;
-                    tr.z += -cos(theta-PI/2)*sensitivity;
+                    tr.x += sin(theta-PI/2)*sensitivity;
+                    tr.z += cos(theta-PI/2)*sensitivity;
+                    break;
                 case 4:
                     tr.y -= sensitivity;
                     break;
@@ -113,15 +115,16 @@ function draw(){
     phi += (mouseY - mousePrev.y)*180/height*PI/180;
     mousePrev.y = mouseY;
 
-    stroke(255,255,255);
+    noStroke();
     push();
         translate(tr.x, tr.y, tr.z);
         // circle(0,0,30);
         // image(im,30,30);
+        textureMode(IMAGE)
         texture(im);
         // rotateY(c);
         // c+=.1;
-        box(90);
+        box(300);
     pop();
 
     camera(
@@ -129,4 +132,10 @@ function draw(){
         sin(theta),sin(phi),cos(theta),
         0,-1,0
     ); 
+}
+
+function plane(size){
+    push();
+
+    pop();
 }

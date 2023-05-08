@@ -1,8 +1,17 @@
+console.log('help')
+import('./p5.js').then(setup)
+
+
 function setup(){
-    createCanvas(800,500, WEBGL);
+    console.log('setup')
+    createCanvas(1300,500, WEBGL);
     fArial = loadFont('/fonts/arial.ttf')
     textFont(fArial);
     im = loadImage("imgs/k.png");
+    ry = loadImage('imgs/haram.png')
+    city = loadImage('imgs/index.jpg');
+    ryan = loadImage('imgs/ryan.png');
+    frameRate(50);
 }
 
 //            w      s      a      d      UP     DOWN
@@ -70,11 +79,14 @@ tr = {
 }
 
 let im;
+let ry;
+let city;
+let ryan;
 c = 0;
 
 
 function draw(){
-    background(random(0,255));
+    background(random(0,255), random(0,255), random(0,255));
 
     for(let i = 0; i < keys.length; i++){
         if(keys[i]){
@@ -120,22 +132,57 @@ function draw(){
         translate(tr.x, tr.y, tr.z);
         // circle(0,0,30);
         // image(im,30,30);
-        textureMode(IMAGE)
-        texture(im);
-        // rotateY(c);
-        // c+=.1;
-        box(300);
+        push();
+            textureMode(IMAGE);
+            texture(im);
+            rotateY(c);
+            c+=.1;
+            box(300);
+            translate(160,500,0);
+            box(300,1000,300);
+            translate(160,-500,0);
+            box(300);
+        pop();
+        push();
+            translate(1000,0,0);
+            textureMode(NORMAL);
+            texture(ry);
+            rotateZ(PI);
+            beginShape();
+                vertex(0,0,0,0,0);
+                vertex(0,1000,0,0,1);
+                vertex(1000,1000,0, 1,1);
+                vertex(1000,0, 1,1,0);
+            endShape();
+        pop();
+        push();
+            translate(-300,0,0);
+            textureMode(NORMAL);
+            texture(city);
+            rotateZ(PI);
+            beginShape();
+                vertex(0,0,0,0,0);
+                vertex(0,1000,0,0,1);
+                vertex(1000,1000,0, 1,1);
+                vertex(1000,0, 1,1,0);
+            endShape();
+            translate(0,1000,0);
+            texture(ryan)
+            beginShape();
+                vertex(0,0,0,0,0);
+                vertex(0,1000,0,0,1);
+                vertex(1000,1000,0, 1,1);
+                vertex(1000,0, 1,1,0);
+            endShape();
+        pop();
     pop();
+    
 
     camera(
         0,0,0,
         sin(theta),sin(phi),cos(theta),
         0,-1,0
     ); 
+    // delay(.5);
 }
 
-function plane(size){
-    push();
-
-    pop();
-}

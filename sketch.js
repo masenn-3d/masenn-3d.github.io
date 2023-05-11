@@ -11,13 +11,14 @@ function setup(){
     ry = loadImage('imgs/haram.png')
     city = loadImage('imgs/index.jpg');
     ryan = loadImage('imgs/ryan.png');
-    jah = loadImage('imgs/images.jpg')
+    jah = loadImage('imgs/images.jpg');
+    reg = loadImage('imgs/sincity.jpg');
     frameRate(11);
     // song = loadSound('./sound.mp3');
     // song.play();
     // soundFormats('mp3');
-    // var audio = new Audio('sound.mp3');
-    // audio.play();
+    var audio = new Audio('sound.mp3');
+    audio.play();
 }
 
 function mouseClicked(){
@@ -105,6 +106,7 @@ let ry;
 let city;
 let ryan;
 let jah;
+let reg; 
 
 let rnd = false;
 
@@ -422,6 +424,10 @@ function testFunction(){
     push();
         translate(1500,45,-1500);
         imageC(3000, jah);
+        rotateY(PI/2);
+        translate(1300,300,1000);
+
+        imageC(2000,reg);
     pop();
     camera(
         tr.x, tr.y, tr.z,

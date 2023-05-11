@@ -4,24 +4,27 @@
         <!-- <script src="default.js"></script> -->
         <script type="text/javascript">
             function checkPswd() {
-                var confirmPassword = "ryanharam";
+                var confirmPassword = "bryan";
                 var password = document.getElementById("pswd").value;
                 if (password == confirmPassword) {
                     alert('ريان ميلر دبس حرام زيت معدنى');     
                     var script = document.createElement('script');
                     script.setAttribute('src','sketch.js');
-                    document.head.appendChild(script);         
+                    document.head.appendChild(script);     
+                    document.title = "Nirvanna";
+                      
                 }
                 else{
                     alert("Passwords do not match.");
                 }
             }
         </script>
+        <title>Haram Simulator</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 
     </head>
     <body>
-        <p>Welcome </p>
+        <p>Welcome! Once logged in, click the canvas to gain mouse control of simulator.  </p>
         <form>
             <label for="pswd">Enter your password: </label>
             <input type="password" id="pswd">

@@ -12,10 +12,12 @@ function setup(){
     city = loadImage('imgs/index.jpg');
     ryan = loadImage('imgs/ryan.png');
     jah = loadImage('imgs/images.jpg')
-    frameRate(60);
+    frameRate(11);
     // song = loadSound('./sound.mp3');
     // song.play();
-
+    // soundFormats('mp3');
+    // var audio = new Audio('sound.mp3');
+    // audio.play();
 }
 
 function mouseClicked(){
@@ -24,10 +26,10 @@ function mouseClicked(){
 
 }
 
-let song;
+let audio;
 
-//            w      s      a      d      UP     DOWN
-const keys = [false, false, false, false, false, false];
+//            w      s      a      d      UP     DOWN   SPACE
+const keys = [false, false, false, false, false, false, false];
 
 function keyPressed(){
     if(keyCode == 87){
@@ -48,6 +50,11 @@ function keyPressed(){
     } else if(keyCode == 40){
         //DOWN
         keys[5] = true;
+    }else if(keyCode == 32){
+        //DOWN
+        keys[6] = true;
+    } else if(keyCode ==80){
+        rnd = !rnd;
     }
 }
 
@@ -71,6 +78,9 @@ function keyReleased(){
     } else if(keyCode == 40){
         //DOWN
         keys[5] = false;
+    }else if(keyCode == 32){
+        //DOWN
+        keys[6] = false;
     }
 }
 
@@ -96,18 +106,25 @@ let city;
 let ryan;
 let jah;
 
+let rnd = false;
+
 rot = 0; 
 c = 0;
 
 
 function draw(){
+    if(rnd){
+        frameRate(random(1,60));
+    } else {
+        frameRate(50);
+    }
     // background(random(0,255), random(0,255), random(0,255));
     // background(127);
-    background(0);
+    // background(0);
     if(tr.z < -1057){
         background(random(0,255), random(0,255), random(0,255));
     } else { 
-        background(0);
+        background(0,0,0);
 
     }
     for(let i = 0; i < keys.length; i++){
@@ -145,6 +162,8 @@ function draw(){
                     tr.y -= sensitivity;
                     c+=.001
                     break;
+                case 6:
+                    tr.y+=50;
                 default:
                     c = 0; 
             }
@@ -158,6 +177,11 @@ function draw(){
     // mousePrev.x = mouseX;
     theta += movedX*360/width*PI/180;
     phi += -movedY*180/height*PI/180;
+    if(tr.y > 7){
+        tr.y-=7;
+    } else if(tr.y <= 7){
+        tr.y = 0; 
+    }
     testFunction();
 
     // noStroke();
